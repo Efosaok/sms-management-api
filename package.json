@@ -1,0 +1,38 @@
+{
+  "name": "sms-management-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon --exec babel-node src/index",
+    "start": "npm run build && node dist/index",
+    "build": "babel ./src/ -d ./dist"
+  },
+  "keywords": [
+    "sms",
+    "management",
+    "api"
+  ],
+  "author": "Efosa Okpugie",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "knex": "^0.16.3",
+    "pg": "^7.9.0",
+    "swagger-ui-express": "^4.0.2",
+    "validatorjs": "^3.15.1",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.1",
+    "dotenv": "^7.0.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "idempotent-babel-polyfill": "^7.0.0",
+    "nodemon": "^1.18.10"
+  }
+}

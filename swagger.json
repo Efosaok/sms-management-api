@@ -1,0 +1,769 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "sms-management-api",
+    "description": "documentation of the sms-management-api",
+    "contact": {}
+  },
+  "host": "localhost:1246",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/contact": {
+      "get": {
+        "description": "fetch all contacts ",
+        "summary": "fetch contacts",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "ContactGet",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/localhost%3A1246~1api~1v1~1contact"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "contacts successfully fetched",
+                "contacts": [
+                  {
+                    "id": 2,
+                    "name": "Efosa Okpugie",
+                    "phoneNumber": "08035272406",
+                    "created_at": "2019-03-21T01:06:45.538Z",
+                    "updated_at": "2019-03-21T01:06:45.538Z"
+                  },
+                  {
+                    "id": 4,
+                    "name": "Efosa Okpugie",
+                    "phoneNumber": "08035272409",
+                    "created_at": "2019-03-21T01:07:24.178Z",
+                    "updated_at": "2019-03-21T01:07:24.178Z"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "336"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"150-Xf04rzKM7sJSRdvCF5OFLPCI9/8\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 21 Mar 2019 01:30:18 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Create a contact to use for sending sms",
+        "summary": "Create a contact",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "ContactPost",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "phoneNumber",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Createacontact2"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "new contact successfully created"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "46"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"2e-ac3/veqw0b7y+1aRsf5PJsnneVg\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 21 Mar 2019 01:43:10 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/Createacontact1"
+            },
+            "examples": {
+              "application/json": {
+                "message": "Invalid Credentials",
+                "errors": {
+                  "phoneNumber": [
+                    "The phoneNumber must be 11 characters."
+                  ]
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/Createacontact"
+            },
+            "examples": {
+              "application/json": {
+                "errorMessage": "phone number already exists"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sms/{senderId}/{receiverId}/send": {
+      "post": {
+        "description": "Send Sms to another contact",
+        "summary": "Send sms",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Sms25SendPost",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "message",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Sendsms"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "sms successfully sent"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "35"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"23-RmKbijUk+ZtRocboSIV9l57S5x4\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 21 Mar 2019 01:34:20 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Createacontact"
+            },
+            "examples": {
+              "application/json": {
+                "errorMessage": "an error occured, please check the specified sender or receiver"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contact/{contactId}": {
+      "delete": {
+        "description": "Delete a contact to remove sent and received sms",
+        "summary": "delete contact",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Contact2Delete",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/deletecontact"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "contact deleted successfully"
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "42"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"2a-CjYTbbgQIdCTBGtIAMjHW03bwxs\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 21 Mar 2019 01:46:49 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/deletecontact1"
+            },
+            "examples": {
+              "application/json": {
+                "error": "contact specified to be deleted does not seem to exist"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sms/{contactId}/received": {
+      "get": {
+        "description": "fetch received sms of a contact",
+        "summary": "received sms",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Sms4ReceivedGet",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/receivedsms1"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "all received sms for contact found",
+                "sentSms": [
+                  {
+                    "id": 9,
+                    "sender": 4,
+                    "receiver": 5,
+                    "message": "Thanks for the great service, absolutely love it",
+                    "created_at": "2019-03-21T01:54:55.95Z",
+                    "updated_at": "2019-03-21T01:54:55.95Z"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "234"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"ea-1k1RNoeLeafaKuvzfnZhmzaMZOw\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 21 Mar 2019 01:55:06 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Sendsms"
+            },
+            "examples": {
+              "application/json": {
+                "message": "there is no received sms for this contact"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sms/{contactId}/sent": {
+      "get": {
+        "description": "Fetch sent sms of a contact",
+        "summary": "fetch sent sms",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Sms4SentGet",
+        "deprecated": false,
+        "produces": [
+          "application/json; charset=utf-8"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/fetchsentsms"
+            },
+            "examples": {
+              "application/json; charset=utf-8": {
+                "message": "all sent sms for contact found",
+                "sentSms": [
+                  {
+                    "id": 9,
+                    "sender": 4,
+                    "receiver": 5,
+                    "message": "Thanks for the great service, absolutely love it",
+                    "created_at": "2019-03-21T01:54:55.95Z",
+                    "updated_at": "2019-03-21T01:54:55.95Z"
+                  }
+                ]
+              }
+            },
+            "headers": {
+              "X-Powered-By": {
+                "type": "string",
+                "default": "Express"
+              },
+              "Content-Length": {
+                "type": "string",
+                "default": "230"
+              },
+              "ETag": {
+                "type": "string",
+                "default": "W/\"e6-WOR9oPJYt9icCSkIdI9C4wDWLq0\""
+              },
+              "Date": {
+                "type": "string",
+                "default": "Thu, 21 Mar 2019 01:57:51 GMT"
+              },
+              "Connection": {
+                "type": "string",
+                "default": "keep-alive"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/Sendsms"
+            },
+            "examples": {
+              "application/json": {
+                "message": "there is no sent sms for this contact"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "localhost:1246/api/v1/contact": {
+      "title": "localhost:1246/api/v1/contact",
+      "example": {
+        "message": "contacts successfully fetched",
+        "contacts": [
+          {
+            "id": 2,
+            "name": "Efosa Okpugie",
+            "phoneNumber": "08035272406",
+            "created_at": "2019-03-21T01:06:45.538Z",
+            "updated_at": "2019-03-21T01:06:45.538Z"
+          },
+          {
+            "id": 4,
+            "name": "Efosa Okpugie",
+            "phoneNumber": "08035272409",
+            "created_at": "2019-03-21T01:07:24.178Z",
+            "updated_at": "2019-03-21T01:07:24.178Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "contacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Contact"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "contacts"
+      ]
+    },
+    "Contact": {
+      "title": "Contact",
+      "type": "object",
+      "properties": {
+        "id": {
+          "example": 2,
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "example": "Efosa Okpugie",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "example": "08035272406",
+          "type": "string"
+        },
+        "created_at": {
+          "example": "2019-03-21T01:06:45.538Z",
+          "type": "string"
+        },
+        "updated_at": {
+          "example": "2019-03-21T01:06:45.538Z",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "phoneNumber",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    "Sendsms": {
+      "title": "Sendsms",
+      "example": {
+        "message": "sms successfully sent"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "Createacontact": {
+      "title": "Createacontact",
+      "example": {
+        "errorMessage": "phone number already exists"
+      },
+      "type": "object",
+      "properties": {
+        "errorMessage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "errorMessage"
+      ]
+    },
+    "Createacontact1": {
+      "title": "Createacontact1",
+      "example": {
+        "message": "Invalid Credentials",
+        "errors": {
+          "phoneNumber": [
+            "The phoneNumber must be 11 characters."
+          ]
+        }
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "errors": {
+          "$ref": "#/definitions/Errors"
+        }
+      },
+      "required": [
+        "message",
+        "errors"
+      ]
+    },
+    "Errors": {
+      "title": "Errors",
+      "type": "object",
+      "properties": {
+        "phoneNumber": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "phoneNumber"
+      ]
+    },
+    "Createacontact2": {
+      "title": "Createacontact2",
+      "example": {
+        "message": "new contact successfully created"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "deletecontact": {
+      "title": "deletecontact",
+      "example": {
+        "message": "contact deleted successfully"
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "deletecontact1": {
+      "title": "deletecontact1",
+      "example": {
+        "error": "contact specified to be deleted does not seem to exist"
+      },
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "error"
+      ]
+    },
+    "receivedsms1": {
+      "title": "receivedsms1",
+      "example": {
+        "message": "all received sms for contact found",
+        "sentSms": [
+          {
+            "id": 9,
+            "sender": 4,
+            "receiver": 5,
+            "message": "Thanks for the great service, absolutely love it",
+            "created_at": "2019-03-21T01:54:55.95Z",
+            "updated_at": "2019-03-21T01:54:55.95Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "sentSms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SentSm"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "sentSms"
+      ]
+    },
+    "SentSm": {
+      "title": "SentSm",
+      "type": "object",
+      "properties": {
+        "id": {
+          "example": 9,
+          "type": "integer",
+          "format": "int32"
+        },
+        "sender": {
+          "example": 4,
+          "type": "integer",
+          "format": "int32"
+        },
+        "receiver": {
+          "example": 5,
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "example": "Thanks for the great service, absolutely love it",
+          "type": "string"
+        },
+        "created_at": {
+          "example": "2019-03-21T01:54:55.95Z",
+          "type": "string"
+        },
+        "updated_at": {
+          "example": "2019-03-21T01:54:55.95Z",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "sender",
+        "receiver",
+        "message",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    "fetchsentsms": {
+      "title": "fetchsentsms",
+      "example": {
+        "message": "all sent sms for contact found",
+        "sentSms": [
+          {
+            "id": 9,
+            "sender": 4,
+            "receiver": 5,
+            "message": "Thanks for the great service, absolutely love it",
+            "created_at": "2019-03-21T01:54:55.95Z",
+            "updated_at": "2019-03-21T01:54:55.95Z"
+          }
+        ]
+      },
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "sentSms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SentSm"
+          }
+        }
+      },
+      "required": [
+        "message",
+        "sentSms"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
+}

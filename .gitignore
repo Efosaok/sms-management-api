@@ -5,6 +5,17 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+#
+knexfile.js
+
+#migrations
+
+/src/migrations
+
+
+#bundles
+dist
+
 # Runtime data
 pids
 *.pid
