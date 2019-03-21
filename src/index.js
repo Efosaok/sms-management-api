@@ -19,7 +19,7 @@ const port = process.env.PORT || 1234;
 
 const swaggerDocument = {
   ...swagegerDoc,
-  host: process.env.NODE_ENV === 'production' ? 'https://sms-management-api-efosa.herokuapp.com/' : `localhost:${port}`,
+  host: process.env.NODE_ENV === 'production' ? 'sms-management-api-efosa.herokuapp.com/' : `localhost:${port}`,
 };
 
 app.use(bodyParser.json());
